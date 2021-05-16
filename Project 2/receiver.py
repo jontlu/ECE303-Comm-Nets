@@ -40,14 +40,14 @@ class RDTReceiver(Receiver):
                 data = receivedSegment[33:]
 
                 if (str(self.expectedRDTBit) == str(receivedRDTBit)) and (str(checksumGet(data)) == str(checksum)):
-                    self.simulator.u_send(str(self.expectedRDTBit) + str(checksumGet(data)) + data)
+                    self.simulator.u_send(str(self.expectedRDTBit) + str(checksumGet(data)))
                     self.expectedRDTBit = 1 - self.expectedRDTBit
 
                     sys.stdout.write("{}".format(data))
                     sys.stdout.flush()
                 else:
                     negativeRDTBit = str(1 - self.expectedRDTBit)
-                    self.simulator.u_send(negativeRDTBit + str(checksumGet(data)) + data)
+                    self.simulator.u_send(negativeRDTBit + str(checksumGet(data)))
 
         except socket.timeout:
             sys.exit()

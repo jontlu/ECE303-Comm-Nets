@@ -55,7 +55,6 @@ class RDTSender(Sender):
 
                     returnRDTBit = returnSegment[0:1]
                     returnChecksum = returnSegment[1:33]
-                    returnData = returnSegment[33:]
 
                     if (str(self.senderRDTBit) == returnRDTBit) and (str(checksumGet(data)) == returnChecksum):
                         self.simulator.sndr_socket.settimeout(None)
